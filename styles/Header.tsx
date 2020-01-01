@@ -9,13 +9,10 @@ export const headerStyles = StyleSheet.create({
 		backgroundColor: Colors.neutral,
 		padding: Dimens.paddingViewport
 	},
-	button: {
-		flex: 1,
-		padding: 4
-	},
 	buttonIcon: {
-		width: Dimens.buttonSizeMain,
-		height: Dimens.buttonSizeMain
+		backgroundColor: Colors.primary,
+		borderRadius: Dimens.borderRadiusMain,
+		alignItems: "center"
 	},
 	title: {
 		flex: 6,
@@ -23,5 +20,14 @@ export const headerStyles = StyleSheet.create({
 		textAlign: "center",
 		color: Colors.primary,
 		fontSize: Dimens.fontSizeHeadings
+	},
+	input: {
+		flex: 1,
+		backgroundColor: Colors.white,
+		borderRadius: Dimens.borderRadiusMain,
+		height: Dimens.buttonSizeMain,
+		marginRight: Dimens.paddingViewport,
+		paddingHorizontal: Dimens.paddingViewport,
+		fontSize: Dimens.fontSizeMain
 	}
 })

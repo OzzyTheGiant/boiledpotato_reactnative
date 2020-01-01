@@ -9,7 +9,9 @@ export const Colors = {
 }
 
 export const Dimens = {
-	fontSizeHeadings: 24,
-	paddingViewport: 16,
-	buttonSizeMain: 32
+	fontSizeHeadings: 28,
+	fontSizeMain: 16,
+	paddingViewport: 8,
+	buttonSizeMain: 36,
+	borderRadiusMain: 3
 }
