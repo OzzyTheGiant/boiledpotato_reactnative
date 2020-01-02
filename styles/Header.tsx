@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { Colors, Dimens } from 'styles/Main'
 
-export const headerStyles = StyleSheet.create({
+const headerStyles = StyleSheet.create({
 	header: {
 		flexDirection: "row",
 		justifyContent: "space-between",
@@ -30,4 +30,6 @@ export const headerStyles = StyleSheet.create({
 		paddingHorizontal: Dimens.paddingViewport,
 		fontSize: Dimens.fontSizeMain
 	}
-})
+});
+
+export default headerStyles;
