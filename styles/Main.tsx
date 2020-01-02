@@ -17,7 +17,10 @@ export const Dimens = {
 	fontSizeDescription: 20,
 	paddingViewport: 8,
 	buttonSizeMain: 36,
-	borderRadiusMain: 3
+	buttonSizeCuisine: 96,
+	iconSizeCuisine: 36, 
+	borderRadiusMain: 3,
+	borderRadiusCuisine: 5
 }
 
 const mainStyles = StyleSheet.create({
