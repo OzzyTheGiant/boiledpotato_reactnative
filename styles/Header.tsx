@@ -6,8 +6,7 @@ const headerStyles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		backgroundColor: Colors.neutral,
-		padding: Dimens.paddingViewport
+		backgroundColor: Colors.neutral
 	},
 	buttonIcon: {
 		backgroundColor: Colors.primary,
