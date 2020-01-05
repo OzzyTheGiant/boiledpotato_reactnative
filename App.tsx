@@ -1,22 +1,33 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import Constants from "expo-constants";
-import Header from "components/Header";
-import SearchBar from "components/SearchBar";
-import CuisineFilter from "components/CuisineFilter";
+import { enableScreens } from "react-native-screens";
+import { createAppContainer, NavigationContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { Provider } from "react-redux";
+import store from "store/reducers";
+import MainScreen from "components/MainScreen";
 
+// set up app to use native screens (Activities/UIViews)
+enableScreens();
+
+// create navigation object to handle stack of screens
+const appNavigator = createStackNavigator(
+	{
+		Main: MainScreen
+	},
+	{ 
+		initialRouteName: "Main",
+		headerMode: "none"
+	}
+)
+
+// create component that will display the different screens
+const Navigator: NavigationContainer = createAppContainer(appNavigator);
+
+// root component with redux store provider and navigation container
 export default function App() {
 	return (
-		<View style={styles.root}>
-			<Header/>
-			<SearchBar/>
-			<CuisineFilter/>
-		</View>
+		<Provider store={store}>
+			<Navigator/>
+		</Provider>
 	);
-}
-
-const styles = StyleSheet.create({
-	root: {
-		paddingTop: Constants.statusBarHeight
-	}
-})
+};
