@@ -1,4 +1,4 @@
-import React, { Props } from "react";
+import React from "react";
 import { View, StyleSheet } from "react-native";
 import { connect } from "react-redux";
 import Constants from "expo-constants";
@@ -9,8 +9,6 @@ import * as actionCreator from "actions/actions";
 
 /** Main Screen component that displays search bar and cuisine filter buttons */
 function MainScreen({ query, editKeywords, startSearch, toggleCuisine } : any) {
-	console.log(query);
-	
 	return (
 		<View style={styles.screen}>
 			<Header/>
