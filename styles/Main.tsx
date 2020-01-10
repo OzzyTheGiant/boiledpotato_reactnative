@@ -28,7 +28,9 @@ const mainStyles = StyleSheet.create({
 		padding: Dimens.paddingViewport
 	},
 	paragraph: {
-		width: "100%",
+        // width: 100% will hardcode the width 
+        // to use percentage based on screen size, using flex: 0 implicitly
+        width: "100%",
 		fontSize: Dimens.fontSizeDescription,
 		color: Colors.text,
 		textAlign: "center"

@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Text } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { getButtonStyle } from "styles/CuisineFilter";
+import { cuisineFilterStyles, getButtonStyle } from "styles/CuisineFilter";
 import { Dimens } from "styles/Main";
 import BurgerIcon from "assets/icons/burger.svg";
 import CroissantIcon from "assets/icons/croissant.svg";
@@ -38,12 +38,18 @@ export default function CuisineButton({cuisine, isSelected, onSelect} : any) {
 	}
 
 	return (
-		<TouchableOpacity style={styles.button} onPress={onPressHandler}>
-			<Icon 
-			width={Dimens.iconSizeCuisine} 
-			height={Dimens.iconSizeCuisine} 
-			fill={styles.buttonText.color}/>
+        <TouchableOpacity 
+            containerStyle={cuisineFilterStyles.buttonContainer} 
+            style={styles.button} 
+            onPress={onPressHandler}>
+			
+            <Icon 
+                width={Dimens.iconSizeCuisine} 
+                height={Dimens.iconSizeCuisine} 
+                fill={styles.buttonText.color}/>
+
 			<Text style={styles.buttonText}>{cuisine}</Text>
+
 		</TouchableOpacity>
 	);
 };

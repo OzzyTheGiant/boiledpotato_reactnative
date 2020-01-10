@@ -3,24 +3,29 @@ import { Colors, Dimens } from "styles/Main";
 
 export const cuisineFilterStyles = StyleSheet.create({
 	self: {
-		justifyContent: "space-between",
+        justifyContent: "space-between",
 		flexWrap: "wrap",
 		flexDirection: "row",
 	},
 	title: {
-		flex: 0,
-		width: "100%",
+		flex: 0, // must be set since it's first element, otherwise will dissappear
+        width: "100%",
 		color: Colors.neutral
-	}
+    },
+    buttonContainer: {
+        // implicit flex: 0 with 31% width will size the container of the
+        // TouchableOpacity. It needs it's own containerStyle
+        width:"31%",
+        marginTop: Dimens.paddingViewport * 1.5,
+    }
 });
 
 
 const baseButtonStyle = {
 	button: {
-		width: Dimensions.get('window').width * 0.3,
+        width: "100%",
 		height: Dimens.buttonSizeCuisine,
 		borderRadius: Dimens.borderRadiusCuisine,
-		marginTop: Dimens.paddingViewport,
 		justifyContent: "center",
 		alignItems: "center"
 	},
