@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import EasyToast from "react-native-easy-toast";
 import Constants from "expo-constants";
@@ -26,8 +26,10 @@ function MainScreen({ query, editKeywords, startSearch, toggleCuisine } : any) {
 	return (
 		<View style={styles.screen}>
 			<Header/>
-			<SearchBar onInput={editKeywords} onSubmit={validateField}/>
-			<CuisineFilter selectedCuisine={query.cuisine.toUpperCase()} onSelect={toggleCuisine}/>
+            <SearchBar onInput={editKeywords} onSubmit={validateField}/>
+            <ScrollView bounces={false}>
+                <CuisineFilter selectedCuisine={query.cuisine.toUpperCase()} onSelect={toggleCuisine}/>
+            </ScrollView>
             <Toast 
                 ref={toast} 
                 style={styles.toast} 
