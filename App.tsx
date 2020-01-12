@@ -5,6 +5,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { Provider } from "react-redux";
 import store from "store/reducers";
 import MainScreen from "components/MainScreen";
+import SearchResultsScreen from "components/SearchResultsScreen";
 
 // set up app to use native screens (Activities/UIViews)
 enableScreens();
@@ -12,7 +13,8 @@ enableScreens();
 // create navigation object to handle stack of screens
 const appNavigator = createStackNavigator(
 	{
-		Main: MainScreen
+        Main: MainScreen,
+        SearchResults: SearchResultsScreen
 	},
 	{ 
 		initialRouteName: "Main",

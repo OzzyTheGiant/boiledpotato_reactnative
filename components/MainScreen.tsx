@@ -10,7 +10,7 @@ import CuisineFilter from "components/CuisineFilter";
 import { Colors } from "styles/Main";
 
 /** Main Screen component that displays search bar and cuisine filter buttons */
-function MainScreen({ query, editKeywords, startSearch, toggleCuisine } : any) {
+function MainScreen({ query, editKeywords, startSearch, toggleCuisine, navigation } : any) {
     const toast : React.MutableRefObject<EasyToast | null> = useRef(null)
     const Toast : any = EasyToast
 
@@ -19,7 +19,7 @@ function MainScreen({ query, editKeywords, startSearch, toggleCuisine } : any) {
         if (!query.keywords) {
             toast.current?.show("Please enter an ingredient!", 3000)
         } else {
-            startSearch();
+            navigation.navigate('SearchResults')
         }
     }
 
