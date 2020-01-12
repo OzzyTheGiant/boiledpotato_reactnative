@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text } from "react-native";
-import CuisineButton, { cuisines } from "components/CuisineButton";
+import CuisineButton, { cuisines } from "components/main-screen/CuisineButton";
 import headerStyles from "styles/Header";
 import mainStyles from "styles/Main";
 import { cuisineFilterStyles } from "styles/CuisineFilter";

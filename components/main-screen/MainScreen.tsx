@@ -4,9 +4,9 @@ import { connect } from "react-redux";
 import EasyToast from "react-native-easy-toast";
 import Constants from "expo-constants";
 import * as actionCreator from "actions/actions";
-import Header from "components/Header";
-import SearchBar from "components/SearchBar";
-import CuisineFilter from "components/CuisineFilter";
+import Header from "components/main-screen/Header";
+import SearchBar from "components/main-screen/SearchBar";
+import CuisineFilter from "components/main-screen/CuisineFilter";
 import { Colors } from "styles/Main";
 
 /** Main Screen component that displays search bar and cuisine filter buttons */

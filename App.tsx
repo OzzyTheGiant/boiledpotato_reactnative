@@ -4,8 +4,8 @@ import { createAppContainer, NavigationContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { Provider } from "react-redux";
 import store from "store/reducers";
-import MainScreen from "components/MainScreen";
-import SearchResultsScreen from "components/SearchResultsScreen";
+import MainScreen from "components/main-screen/MainScreen";
+import SearchResultsScreen from "components/search-results-screen/SearchResultsScreen";
 
 // set up app to use native screens (Activities/UIViews)
 enableScreens();
