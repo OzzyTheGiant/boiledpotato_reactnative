@@ -2,12 +2,11 @@ import React, { useRef } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import EasyToast from "react-native-easy-toast";
-import Constants from "expo-constants";
 import * as actionCreator from "actions/actions";
-import Header from "components/main-screen/Header";
+import Header from "components/Header";
 import SearchBar from "components/main-screen/SearchBar";
 import CuisineFilter from "components/main-screen/CuisineFilter";
-import { Colors } from "styles/Main";
+import mainStyles, { Colors } from "styles/Main";
 
 /** Main Screen component that displays search bar and cuisine filter buttons */
 function MainScreen({ query, editKeywords, startSearch, toggleCuisine, navigation } : any) {
@@ -24,7 +23,7 @@ function MainScreen({ query, editKeywords, startSearch, toggleCuisine, navigatio
     }
 
 	return (
-		<View style={styles.screen}>
+		<View style={mainStyles.screen}>
 			<Header/>
             <SearchBar onInput={editKeywords} onSubmit={validateField}/>
             <ScrollView bounces={false}>
@@ -41,9 +40,6 @@ function MainScreen({ query, editKeywords, startSearch, toggleCuisine, navigatio
 };
 
 const styles = StyleSheet.create({
-	screen: {
-		paddingTop: Constants.statusBarHeight
-    },
     toast: {
         backgroundColor: Colors.accent
     }

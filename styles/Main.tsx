@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native"
+import { StyleSheet } from "react-native";
+import Constants from "expo-constants";
 
 export const Colors = {
 	primary: "#FFE55F",
@@ -24,6 +25,9 @@ export const Dimens = {
 }
 
 const mainStyles = StyleSheet.create({
+    screen: {
+		paddingTop: Constants.statusBarHeight
+    },
 	component: {
 		padding: Dimens.paddingViewport
 	},
@@ -34,7 +38,7 @@ const mainStyles = StyleSheet.create({
 		fontSize: Dimens.fontSizeDescription,
 		color: Colors.text,
 		textAlign: "center"
-	}
+	},
 })
 
 export default mainStyles;
