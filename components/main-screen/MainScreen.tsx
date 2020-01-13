@@ -24,7 +24,7 @@ function MainScreen({ query, editKeywords, startSearch, toggleCuisine, navigatio
 
 	return (
 		<View style={mainStyles.screen}>
-			<Header/>
+			<Header title="Find a Recipe"/>
             <SearchBar onInput={editKeywords} onSubmit={validateField}/>
             <ScrollView bounces={false}>
                 <CuisineFilter selectedCuisine={query.cuisine.toUpperCase()} onSelect={toggleCuisine}/>

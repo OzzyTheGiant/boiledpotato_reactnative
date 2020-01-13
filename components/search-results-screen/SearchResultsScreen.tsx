@@ -1,12 +1,12 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
+import Header from 'components/Header';
 
 function SearchResultsScreen({query}: any) {
     return (
         <View>
-            <Text>{query.keywords}</Text>
-            <Text>{query.cuisine}</Text>
+            <Header title="Search Results"/>
         </View>
     );
 }
