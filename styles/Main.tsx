@@ -16,11 +16,19 @@ export const Dimens = {
 	fontSizeHeadings: 28,
 	fontSizeMain: 16,
     fontSizeDescription: 20,
+
     recipeImageHeight: 180,
-	paddingViewport: 8,
+    placeHolderWidth: 600,
+    placeHolderHeight: 240,
+    shimmerWidth: 0.3,
+
+    paddingViewport: 8,
+    
 	buttonSizeMain: 36,
-	buttonSizeCuisine: 96,
-	iconSizeCuisine: 36, 
+    buttonSizeCuisine: 96,
+    
+    iconSizeCuisine: 36,
+    
 	borderRadiusMain: 3,
 	borderRadiusCuisine: 5
 }

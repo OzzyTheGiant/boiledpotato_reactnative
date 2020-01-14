@@ -14,6 +14,10 @@ const recipeListStyles = StyleSheet.create({
         margin: Dimens.paddingViewport,
         fontSize: Dimens.fontSizeDescription,
         color: Colors.white
+    },
+    placeholder: {
+        width: "100%",
+        marginBottom: Dimens.paddingViewport
     }
 });
 
