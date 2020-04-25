@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, TouchableOpacity } from 'react-native';
 import ArrowBackIcon from 'assets/icons/arrow-back.svg';
 import FavoriteIcon from 'assets/icons/star.svg';
@@ -18,4 +19,8 @@ export default function Header({title} : any) {
 			</TouchableOpacity>
 		</View>
 	)
+}
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired
 }
