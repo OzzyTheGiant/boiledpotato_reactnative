@@ -9,7 +9,7 @@ import CuisineFilter from "components/main-screen/CuisineFilter";
 import mainStyles, { Colors } from "styles/Main";
 
 /** Main Screen component that displays search bar and cuisine filter buttons */
-function MainScreen({ query, editKeywords, startSearch, toggleCuisine, navigation } : any) {
+function MainScreen({ query, editKeywords, toggleCuisine, navigation } : any) {
     const toast : React.MutableRefObject<EasyToast | null> = useRef(null)
     const Toast : any = EasyToast
 
@@ -57,9 +57,6 @@ function mapDispatchToProps(dispatch: Function) {
 	return {
 		editKeywords: (keywords: string) => {
 			dispatch(actionCreator.editKeywords(keywords))
-		},
-		startSearch: () => {
-			dispatch(actionCreator.startSearch())
 		},
 		toggleCuisine: (cuisine: string) => {
 			dispatch(actionCreator.toggleCuisine(cuisine))
