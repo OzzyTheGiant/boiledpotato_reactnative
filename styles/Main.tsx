@@ -37,6 +37,9 @@ const mainStyles = StyleSheet.create({
     screen: {
 		paddingTop: Constants.statusBarHeight
     },
+    parent: {
+        flex: 1
+    },
 	component: {
 		padding: Dimens.paddingViewport
 	},
