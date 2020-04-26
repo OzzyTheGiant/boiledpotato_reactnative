@@ -9,13 +9,15 @@ export const Colors = {
 	placeholder: "#BBBBBB",
 	text: "#888888",
 	neutral: "#000000",
-	white: "#FFFFFF"
+    white: "#FFFFFF",
+    error: "#FF0000"
 }
 
 export const Dimens = {
 	fontSizeHeadings: 28,
 	fontSizeMain: 16,
     fontSizeDescription: 20,
+    fontSizeButton: 24,
 
     recipeImageHeight: 180,
     placeHolderWidth: 600,
@@ -24,7 +26,8 @@ export const Dimens = {
 
     paddingViewport: 8,
     
-	buttonSizeMain: 36,
+    buttonSizeMain: 36,
+    buttonSizeLarge: 52,
     buttonSizeCuisine: 96,
     
     iconSizeCuisine: 36,
@@ -50,7 +53,32 @@ const mainStyles = StyleSheet.create({
 		fontSize: Dimens.fontSizeDescription,
 		color: Colors.text,
 		textAlign: "center"
-	},
+    },
+    button: {
+        width: "100%",
+        maxWidth: 420,
+        height: Dimens.buttonSizeLarge,
+        fontSize: Dimens.fontSizeButton,
+        backgroundColor: Colors.primaryDark,
+        padding: Dimens.paddingViewport,
+        textAlign: "center",
+        borderRadius: Dimens.borderRadiusMain,
+        justifyContent: "center"
+    },
+    buttonLoading: {
+        backgroundColor: Colors.primary
+    },
+    buttonError: {
+        backgroundColor: Colors.placeholder,
+        flexDirection: "row",
+        fontSize: Dimens.fontSizeMain
+    },
+    buttonErrorChild: {
+        flex: 1
+    },
+    buttonErrorIcon: {
+        marginRight: Dimens.paddingViewport
+    }
 })
 
 export default mainStyles;

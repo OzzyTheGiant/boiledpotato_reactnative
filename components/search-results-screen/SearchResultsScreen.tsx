@@ -2,13 +2,14 @@ import React, { useEffect, Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { View, FlatList } from "react-native";
+import { Recipe } from "models/Recipe";
+import * as actionCreator from "actions/actions";
 import Header from "components/Header";
 import Placeholder from "components/search-results-screen/Placeholder";
+import RecipeCard from "components/search-results-screen/RecipeCard";
+import LoadMoreButton from "components/search-results-screen/LoadMoreButton";
 import mainStyles from "styles/Main";
 import recipeListStyles from "styles/RecipeList";
-import * as actionCreator from "actions/actions";
-import RecipeCard from "./RecipeCard";
-import { Recipe } from "models/Recipe";
 
 function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
     let element = null;
@@ -18,7 +19,8 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
         if (recipes.length < 1) searchRecipes(query.keywords, query.cuisine);
     }, []);
 
-    if (resource) {
+    // check http request status and if no recipes found yet
+    if (resource && !recipes.length) {
         switch(resource.status) {
             case "loading":
                 element = (
@@ -28,21 +30,24 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
                     </Fragment>
                 ); break;
 
-            case "success":
-                element = (
-                    <FlatList
-                        data={recipes}
-                        renderItem={({ item }: any) => 
-                            <RecipeCard recipeName={item.name} recipeImage={item.imageFileName}/>
-                        }
-                        keyExtractor={(recipe: Recipe) => recipe.id.toString()}>
-                    </FlatList>
-                ); break;
-
             case "error": default:
                 element = "error";
                 break;
         }
+    } else if (recipes.length > 0) {
+        // render list if there are any recipes available
+        element = (
+            <FlatList
+                data={recipes}
+                renderItem={({ item }: any) => 
+                    <RecipeCard recipeName={item.name} recipeImage={item.imageFileName}/>
+                }
+                ListFooterComponent={() => 
+                    <LoadMoreButton status={resource.status}/>
+                }
+                keyExtractor={(recipe: Recipe) => recipe.id.toString()}>
+            </FlatList>
+        );
     }
 
     return (
