@@ -41,7 +41,10 @@ function resourceReducer(resource: Resource, action: Action) : Resource | null {
             return { status: "success" };
         
         case Types.SEARCH_RECIPES_ERROR:
-            return { status: "error", message: action.payload };
+            return { 
+                status: "error", 
+                message: action.payload.message || action.payload.toString() 
+            };
 
         case Types.SEARCH_RECIPES_LOADING:
             return { status: "loading" };

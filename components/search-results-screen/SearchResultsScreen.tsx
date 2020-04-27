@@ -8,6 +8,7 @@ import Header from "components/Header";
 import Placeholder from "components/search-results-screen/Placeholder";
 import RecipeCard from "components/search-results-screen/RecipeCard";
 import LoadMoreButton from "components/search-results-screen/LoadMoreButton";
+import ErrorNotification from "components/ErrorNotification";
 import mainStyles from "styles/Main";
 import recipeListStyles from "styles/RecipeList";
 
@@ -23,15 +24,13 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
     if (resource && !recipes.length) {
         switch(resource.status) {
             case "loading":
-                element = (
-                    <Fragment>
-                        <Placeholder/>
-                        <Placeholder/>
-                    </Fragment>
-                ); break;
+                element = <Fragment><Placeholder/><Placeholder/></Fragment>; 
+                break;
 
             case "error": default:
-                element = "error";
+                element = <ErrorNotification 
+                    message={resource.message} 
+                    retryAction={() => searchRecipes(query.keywords, query.cuisine)}/>;
                 break;
         }
     } else if (recipes.length > 0) {

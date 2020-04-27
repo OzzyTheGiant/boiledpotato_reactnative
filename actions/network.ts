@@ -11,7 +11,7 @@ export function fetchRecipes(keywords: string, cuisine: string) : any {
     return async () => {
         const url = `https://${HEADERS["X-RapidAPI-Host"]}/recipes/search`;
         const queryString = `?query=${keywords}&cuisine=${cuisine}`;
-
+        
         try {
             const response = await fetch(url + queryString, {
                 method: "GET",
