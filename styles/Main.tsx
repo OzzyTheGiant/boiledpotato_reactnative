@@ -57,13 +57,21 @@ const mainStyles = StyleSheet.create({
     button: {
         width: "100%",
         maxWidth: 420,
-        height: Dimens.buttonSizeLarge,
+        paddingTop: Dimens.paddingViewport * 2,
+        paddingBottom: Dimens.paddingViewport * 2,
         fontSize: Dimens.fontSizeButton,
         backgroundColor: Colors.primaryDark,
-        padding: Dimens.paddingViewport,
+        paddingLeft: Dimens.paddingViewport,
+        paddingRight: Dimens.paddingViewport,
         textAlign: "center",
-        borderRadius: Dimens.borderRadiusMain,
+        borderRadius: Dimens.borderRadiusCuisine,
+        overflow: "hidden", // to fix border radius issue
         justifyContent: "center"
+    },
+    buttonFitted: {
+        width: "auto",
+        paddingLeft: Dimens.paddingViewport * 2,
+        paddingRight: Dimens.paddingViewport * 2
     },
     buttonLoading: {
         backgroundColor: Colors.primary
@@ -78,6 +86,19 @@ const mainStyles = StyleSheet.create({
     },
     buttonErrorIcon: {
         marginRight: Dimens.paddingViewport
+    },
+    errorNotification: {
+        alignItems: "center",
+        justifyContent: "center",
+        flex: 1
+    },
+    errorText: {
+        fontSize: Dimens.fontSizeDescription,
+        paddingLeft: Dimens.paddingViewport,
+        paddingRight: Dimens.paddingViewport,
+        marginTop: Dimens.paddingViewport * 2,
+        marginBottom: Dimens.paddingViewport * 2,
+        textAlign: "center"
     }
 })
 
