@@ -30,9 +30,9 @@ export function toggleCuisine(cuisine: string) : Action {
 	}
 }
 
-export function searchRecipes(keywords: string, cuisine: string) : Action {
+export function searchRecipes(keywords: string, cuisine: string, offset: number) : Action {
 	return {
         type: Types.SEARCH_RECIPES,
-        payload: fetchRecipes(keywords, cuisine)
+        payload: fetchRecipes(keywords, cuisine, offset)
 	}
 }

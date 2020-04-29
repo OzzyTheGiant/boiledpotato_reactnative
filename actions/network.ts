@@ -7,10 +7,10 @@ const HEADERS = {
 };
 
 /** Fetch a list of recipes and its metadata from REST API */
-export function fetchRecipes(keywords: string, cuisine: string) : any {
+export function fetchRecipes(keywords: string, cuisine: string, offset: number) : any {
     return async () => {
         const url = `https://${HEADERS["X-RapidAPI-Host"]}/recipes/search`;
-        const queryString = `?query=${keywords}&cuisine=${cuisine}`;
+        const queryString = `?query=${keywords}&cuisine=${cuisine}&number=10&offset=${offset}`;
         
         try {
             const response = await fetch(url + queryString, {

@@ -17,7 +17,7 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
 
     // run only once after mounting
     useEffect(() => {
-        if (recipes.length < 1) searchRecipes(query.keywords, query.cuisine);
+        if (recipes.length < 1) searchRecipes(query.keywords, query.cuisine, recipes.length);
     }, []);
 
     // check http request status and if no recipes found yet
@@ -30,7 +30,7 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
             case "error": default:
                 element = <ErrorNotification 
                     message={resource.message} 
-                    retryAction={() => searchRecipes(query.keywords, query.cuisine)}/>;
+                    retryAction={() => searchRecipes(query.keywords, query.cuisine, recipes.length)}/>;
                 break;
         }
     } else if (recipes.length > 0) {
@@ -42,7 +42,11 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
                     <RecipeCard recipeName={item.name} recipeImage={item.imageFileName}/>
                 }
                 ListFooterComponent={() => 
-                    <LoadMoreButton status={resource.status}/>
+                    recipes.length < query.totals ? 
+                        <LoadMoreButton status={resource.status} loadAction={
+                            () => searchRecipes(query.keywords, query.cuisine, recipes.length)
+                        }/> 
+                        : null
                 }
                 keyExtractor={(recipe: Recipe) => recipe.id.toString()}>
             </FlatList>
@@ -76,8 +80,8 @@ function mapStateToProps(state: any) {
 
 function mapDispatchToProps(dispatch: Function) {
     return {
-        searchRecipes: (keywords: string, cuisine: string) => {
-            dispatch(actionCreator.searchRecipes(keywords, cuisine));
+        searchRecipes: (keywords: string, cuisine: string, offset: number) => {
+            dispatch(actionCreator.searchRecipes(keywords, cuisine, offset));
         }
     }
 }

@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import CancelIcon from "assets/icons/cancel.svg";
 import mainStyles, { Colors, Dimens } from "styles/Main";
 
-export default function LoadMoreButton({ status, message }: any) {
+export default function LoadMoreButton({ status, message, loadAction }: any) {
     let button = null;
 
     switch (status) {
@@ -33,12 +33,14 @@ export default function LoadMoreButton({ status, message }: any) {
     }
 
     return (
-        <TouchableOpacity onPress={() => {}}>
+        <TouchableOpacity onPress={loadAction}>
             {button}
         </TouchableOpacity>
     );
 };
 
 LoadMoreButton.propTypes = {
-    status: PropTypes.string.isRequired
+    status: PropTypes.string.isRequired,
+    message: PropTypes.string,
+    loadAction: PropTypes.func.isRequired
 };
