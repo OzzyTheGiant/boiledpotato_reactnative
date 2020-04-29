@@ -28,6 +28,8 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
                 break;
 
             case "error": default:
+                if (!recipes.length) resource.message = "No results found.";
+
                 element = <ErrorNotification 
                     message={resource.message} 
                     retryAction={() => searchRecipes(query.keywords, query.cuisine, recipes.length)}/>;
