@@ -13,6 +13,7 @@ import mainStyles from "styles/Main";
 import recipeListStyles from "styles/RecipeList";
 
 function SearchResultsScreen({query, resource, recipes, searchRecipes, navigation}: any) {
+    const displayRecipeScreen = () => navigation.navigate("Recipe");
     let element = null;
 
     // run only once after mounting
@@ -41,7 +42,10 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes, navigatio
             <FlatList
                 data={recipes}
                 renderItem={({ item }: any) => 
-                    <RecipeCard recipeName={item.name} recipeImage={item.imageFileName}/>
+                    <RecipeCard 
+                        recipeName={item.name} 
+                        recipeImage={item.imageFileName}
+                        pressAction={displayRecipeScreen}/>
                 }
                 ListFooterComponent={() => 
                     recipes.length < query.totals ? 

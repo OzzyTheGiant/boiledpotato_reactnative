@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import store from "store/reducers";
 import MainScreen from "components/main-screen/MainScreen";
 import SearchResultsScreen from "components/search-results-screen/SearchResultsScreen";
+import RecipeScreen from "components/recipe-screen/RecipeScreen";
 
 // set up app to use native screens (Activities/UIViews)
 enableScreens();
@@ -14,7 +15,8 @@ enableScreens();
 const appNavigator = createStackNavigator(
 	{
         Main: MainScreen,
-        SearchResults: SearchResultsScreen
+        SearchResults: SearchResultsScreen,
+        Recipe: RecipeScreen
 	},
 	{ 
 		initialRouteName: "Main",
