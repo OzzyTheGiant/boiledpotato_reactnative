@@ -7,20 +7,24 @@ import headerStyles from 'styles/Header';
 import mainStyles from 'styles/Main';
 import { Colors, Dimens } from 'styles/Main';
 
-export default function Header({title} : any) {
+export default function Header({ title, backButtonAction } : any) {
 	return (
 		<View style={[headerStyles.header, mainStyles.component]}>
-			<TouchableOpacity onPress={() => { return }}>
+			<TouchableOpacity onPress={backButtonAction}>
 				<ArrowBackIcon width={Dimens.buttonSizeMain} height={Dimens.buttonSizeMain} fill={Colors.primary}/>
 			</TouchableOpacity>
 			<Text style={headerStyles.title}>{title}</Text>
-			<TouchableOpacity onPress={() => { return }}>
-				<FavoriteIcon width={Dimens.buttonSizeMain} height={Dimens.buttonSizeMain} fill={Colors.primary}/>
-			</TouchableOpacity>
+            { title !== "Search Results" ?
+                <TouchableOpacity onPress={() => { return }}>
+                    <FavoriteIcon width={Dimens.buttonSizeMain} height={Dimens.buttonSizeMain} fill={Colors.primary}/>
+                </TouchableOpacity> :
+                <View style={{width: Dimens.buttonSizeMain, height: Dimens.buttonSizeMain}}></View>
+            }
 		</View>
 	)
 }
 
 Header.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    backButtonAction: PropTypes.func
 }

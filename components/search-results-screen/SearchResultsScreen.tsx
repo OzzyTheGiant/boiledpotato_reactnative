@@ -12,7 +12,7 @@ import ErrorNotification from "components/ErrorNotification";
 import mainStyles from "styles/Main";
 import recipeListStyles from "styles/RecipeList";
 
-function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
+function SearchResultsScreen({query, resource, recipes, searchRecipes, navigation}: any) {
     let element = null;
 
     // run only once after mounting
@@ -57,7 +57,7 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes}: any) {
 
     return (
         <View style={mainStyles.parent}>
-            <Header title="Search Results"/>
+            <Header title="Search Results" backButtonAction={() => navigation.goBack()}/>
             <View style={[mainStyles.component, recipeListStyles.listContainer]}>
             { element }
             </View>
