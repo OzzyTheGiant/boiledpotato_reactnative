@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { View, Image, Text } from "react-native";
 import recipeListStyles from "styles/RecipeList";
 
-const BASE_URL = "https://spoonacular.com/recipeImages"
+const BASE_URL = "https://spoonacular.com/recipeImages";
 
 export default function RecipeCard({ recipeImage, recipeName }: any) {
     return (

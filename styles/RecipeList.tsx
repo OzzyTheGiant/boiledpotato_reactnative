@@ -15,6 +15,7 @@ const recipeListStyles = StyleSheet.create({
         borderTopLeftRadius: Dimens.borderRadiusCuisine,
         borderTopRightRadius: Dimens.borderRadiusCuisine,
         height: Dimens.recipeImageHeight,
+        width: "100%",
         backgroundColor: Colors.primary
     },
     cardTitle: {
