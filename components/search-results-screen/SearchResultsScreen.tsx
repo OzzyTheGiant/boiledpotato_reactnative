@@ -12,8 +12,7 @@ import ErrorNotification from "components/ErrorNotification";
 import mainStyles from "styles/Main";
 import recipeListStyles from "styles/RecipeList";
 
-function SearchResultsScreen({query, resource, recipes, searchRecipes, navigation}: any) {
-    const displayRecipeScreen = () => navigation.navigate("Recipe");
+function SearchResultsScreen({query, resource, recipes, searchRecipes, selectRecipe, navigation}: any) {
     let element = null;
 
     // run only once after mounting
@@ -21,19 +20,25 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes, navigatio
         if (recipes.length < 1) searchRecipes(query.keywords, query.cuisine, recipes.length);
     }, []);
 
+    // action to occur when pressing a recipe from the list
+    function pressHandler(recipe: Recipe) {
+        selectRecipe(recipe);
+        navigation.navigate("Recipe");
+    }
+
     // check http request status and if no recipes found yet
     if (resource && !recipes.length) {
         switch(resource.status) {
-            case "loading":
-                element = <Fragment><Placeholder/><Placeholder/></Fragment>; 
-                break;
-
-            case "error": default:
+            case "error":
                 if (!recipes.length) resource.message = "No results found.";
 
                 element = <ErrorNotification 
                     message={resource.message} 
                     retryAction={() => searchRecipes(query.keywords, query.cuisine, recipes.length)}/>;
+                break;
+
+            case "loading": default:
+                element = <Fragment><Placeholder/><Placeholder/></Fragment>; 
                 break;
         }
     } else if (recipes.length > 0) {
@@ -43,9 +48,8 @@ function SearchResultsScreen({query, resource, recipes, searchRecipes, navigatio
                 data={recipes}
                 renderItem={({ item }: any) => 
                     <RecipeCard 
-                        recipeName={item.name} 
-                        recipeImage={item.imageFileName}
-                        pressAction={displayRecipeScreen}/>
+                        recipe={item}
+                        pressAction={() => pressHandler(item)}/>
                 }
                 ListFooterComponent={() => 
                     recipes.length < query.totals ? 
@@ -88,6 +92,9 @@ function mapDispatchToProps(dispatch: Function) {
     return {
         searchRecipes: (keywords: string, cuisine: string, offset: number) => {
             dispatch(actionCreator.searchRecipes(keywords, cuisine, offset));
+        },
+        selectRecipe: (recipe: Recipe) => {
+            dispatch(actionCreator.selectRecipe(recipe));
         }
     }
 }
