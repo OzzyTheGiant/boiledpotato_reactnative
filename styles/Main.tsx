@@ -22,6 +22,7 @@ export const Dimens = {
     recipeImageHeight: 180,
     placeHolderWidth: 600,
     placeHolderHeight: 240,
+    placeHolderTextHeight: 20,
     shimmerWidth: 0.3,
 
     paddingViewport: 8,
