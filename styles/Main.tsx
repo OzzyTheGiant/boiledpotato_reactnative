@@ -14,7 +14,8 @@ export const Colors = {
 }
 
 export const Dimens = {
-	fontSizeHeadings: 28,
+    fontSizeHeadings: 28,
+    fontSizeRecipeTitle: 24,
 	fontSizeMain: 16,
     fontSizeDescription: 20,
     fontSizeButton: 24,

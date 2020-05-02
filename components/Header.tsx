@@ -7,9 +7,13 @@ import headerStyles from 'styles/Header';
 import mainStyles from 'styles/Main';
 import { Colors, Dimens } from 'styles/Main';
 
-export default function Header({ title, backButtonAction } : any) {
+export default function Header({ title, overlay, backButtonAction } : any) {
+    const styles = [headerStyles.header, mainStyles.component];
+    
+    if (overlay) styles.push(headerStyles.clearHeader as any);
+
 	return (
-		<View style={[headerStyles.header, mainStyles.component]}>
+		<View style={styles}>
 			<TouchableOpacity onPress={backButtonAction}>
 				<ArrowBackIcon width={Dimens.buttonSizeMain} height={Dimens.buttonSizeMain} fill={Colors.primary}/>
 			</TouchableOpacity>
@@ -26,5 +30,10 @@ export default function Header({ title, backButtonAction } : any) {
 
 Header.propTypes = {
     title: PropTypes.string.isRequired,
+    overlay: PropTypes.bool,
     backButtonAction: PropTypes.func
 }
+
+Header.defaultProps = {
+    overlay: false
+};

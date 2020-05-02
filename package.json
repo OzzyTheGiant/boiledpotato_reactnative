@@ -21,6 +21,7 @@
 		"react-native-screens": "2.0.0-alpha.12",
 		"react-native-shimmer-placeholder": "git+https://github.com/tomzaku/react-native-shimmer-placeholder.git#expo",
 		"react-native-svg": "9.13.3",
+		"react-native-unordered-list": "^1.0.4",
 		"react-native-web": "~0.11.7",
 		"react-navigation": "^4.0.10",
 		"react-navigation-stack": "^2.0.2",
