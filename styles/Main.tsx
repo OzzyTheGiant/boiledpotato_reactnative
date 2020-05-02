@@ -99,6 +99,10 @@ const mainStyles = StyleSheet.create({
         marginTop: Dimens.paddingViewport * 2,
         marginBottom: Dimens.paddingViewport * 2,
         textAlign: "center"
+    },
+    placeholder: {
+        width: "100%",
+        marginBottom: Dimens.paddingViewport
     }
 })
 
