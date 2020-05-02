@@ -35,21 +35,25 @@ function queryReducer(query: RecipeSearchQuery = initialState.query, action: Act
 	}
 }
 
-function resourceReducer(resource: Resource, action: Action) : Resource | null {
+function resourceReducer(resource: Resource, action: Action) : Resource {
     switch(action.type) {
         case Types.SEARCH_RECIPES_SUCCESS:
+        case Types.GET_RECIPE_DETAILS_SUCCESS:
             return { status: "success" };
         
         case Types.SEARCH_RECIPES_ERROR:
+        case Types.GET_RECIPE_DETAILS_ERROR:
             return { 
                 status: "error", 
                 message: action.payload.message || action.payload.toString() 
             };
 
         case Types.SEARCH_RECIPES_LOADING:
+        case Types.GET_RECIPE_DETAILS_LOADING:
             return { status: "loading" };
 
-        default: return null;
+        default:
+            return resource || { status: "none" }
     }
 }
 
@@ -62,11 +66,27 @@ function recipeListReducer(recipes: Recipe[] = [], action: Action) : Recipe[] {
     }
 }
 
+function recipeReducer(recipe: Recipe | null = null, action: Action) : Recipe | null {
+    switch(action.type) {
+        case Types.SELECT_RECIPE:
+            return action.value
+
+        case Types.GET_RECIPE_DETAILS_SUCCESS:
+            return {
+                ...recipe,
+                ...action.payload
+            };
+
+        default: return recipe;
+    }
+}
+
 // apply middleware to store and generate new createStore function
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore)
 
 export default createStoreWithMiddleware(combineReducers({
     query: queryReducer,
     resource: resourceReducer,
-    recipes: recipeListReducer
+    recipes: recipeListReducer,
+    selectedRecipe: recipeReducer
 }));

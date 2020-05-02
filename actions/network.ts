@@ -20,6 +20,8 @@ export function fetchRecipes(keywords: string, cuisine: string, offset: number) 
 
             const data = await response.json();
 
+            if (data.status === 404) throw data.message || "A problem occurred on the server";
+
             return {
                 query: { 
                     id: 0,
@@ -32,7 +34,7 @@ export function fetchRecipes(keywords: string, cuisine: string, offset: number) 
                 recipes: data.results.map((recipe: any) => ({
                     id: recipe.id,
                     name: recipe.title,
-                    prepMinues: recipe.readyInMinutes,
+                    prepMinutes: recipe.readyInMinutes,
                     imageFileName: recipe.image,
                     servings: 0
                 })) as Recipe[]
@@ -41,4 +43,38 @@ export function fetchRecipes(keywords: string, cuisine: string, offset: number) 
             throw new Error(error);
         }
     }
+}
+
+export function fetchRecipeDetails(id: number) : any {
+    return async () => {
+        const url = `https://${HEADERS["X-RapidAPI-Host"]}/recipes/${id}/information`;
+        
+        try {
+            const instructions : string[] = [];
+            const response = await fetch(url, {
+                method: "GET",
+                headers: HEADERS
+            });
+
+            const data = await response.json();
+
+            if (data.status === 404) throw data.message || "A problem occurred on the server.";
+            
+            // get all instructions from each set of instructions in the recipe and combine to one list
+            data.analyzedInstructions.forEach((instructionSet: any) => {
+                instructionSet.steps.forEach((instruction: any) => {
+                    instructions.push(instruction.step);
+                });
+            });
+
+            return {
+                servings: data.servings,
+                ingredients: data.extendedIngredients.map((ingredient: any) => ingredient.originalString),
+                instructions
+            };
+
+        } catch (error) {
+            throw new Error(error);
+        }
+    };
 }
