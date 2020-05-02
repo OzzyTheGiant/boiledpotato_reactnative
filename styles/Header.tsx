@@ -6,8 +6,14 @@ const headerStyles = StyleSheet.create({
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		backgroundColor: Colors.neutral
-	},
+        backgroundColor: Colors.neutral,
+    },
+    clearHeader: {
+        position: "absolute",
+        top: 0,
+        zIndex: 1,
+        backgroundColor: 'rgba(0,0,0,0)'
+    },
 	buttonIcon: {
 		backgroundColor: Colors.primary,
 		borderRadius: Dimens.borderRadiusMain,
