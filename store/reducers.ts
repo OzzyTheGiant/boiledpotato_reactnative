@@ -62,6 +62,9 @@ function recipeListReducer(recipes: Recipe[] = [], action: Action) : Recipe[] {
         case Types.SEARCH_RECIPES_SUCCESS:
             return [...recipes, ...action.payload.recipes];
 
+        case Types.CLEAR_SEARCH_RESULTS:
+            return [];
+
         default: return recipes;
     }
 }

@@ -8,6 +8,7 @@ export const Types = {
     SEARCH_RECIPES_LOADING: "SEARCH_RECIPES_PENDING",
     SEARCH_RECIPES_SUCCESS: "SEARCH_RECIPES_FULFILLED",
     SEARCH_RECIPES_ERROR: "SEARCH_RECIPES_REJECTED",
+    CLEAR_SEARCH_RESULTS: "CLEAR_SEARCH_RESULTS",
     SELECT_RECIPE: "SELECT_RECIPE",
     GET_RECIPE_DETAILS : "GET_RECIPE_DETAILS",
     GET_RECIPE_DETAILS_LOADING: "GET_RECIPE_DETAILS_PENDING",
@@ -41,6 +42,9 @@ export function searchRecipes(keywords: string, cuisine: string, offset: number)
         type: Types.SEARCH_RECIPES,
         payload: fetchRecipes(keywords, cuisine, offset)
 	}
+
+export function clearSearchResults() : Action {
+    return { type: Types.CLEAR_SEARCH_RESULTS };
 }
 
 export function selectRecipe(recipe: Recipe) : Action {

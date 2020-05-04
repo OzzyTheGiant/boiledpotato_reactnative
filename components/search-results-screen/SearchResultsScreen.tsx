@@ -12,12 +12,15 @@ import ErrorNotification from "components/ErrorNotification";
 import mainStyles from "styles/Main";
 import recipeListStyles from "styles/RecipeList";
 
-function SearchResultsScreen({query, resource, recipes, searchRecipes, selectRecipe, navigation}: any) {
+function SearchResultsScreen({query, resource, recipes, searchRecipes, selectRecipe, clearSearchResults, navigation}: any) {
     let element = null;
 
     // run only once after mounting
     useEffect(() => {
         if (recipes.length < 1) searchRecipes(query.keywords, query.cuisine, recipes.length);
+
+        // run this callback when unmounting
+        return () => clearSearchResults()
     }, []);
 
     // action to occur when pressing a recipe from the list
@@ -95,6 +98,9 @@ function mapDispatchToProps(dispatch: Function) {
         },
         selectRecipe: (recipe: Recipe) => {
             dispatch(actionCreator.selectRecipe(recipe));
+        },
+        clearSearchResults: () => {
+            dispatch(actionCreator.clearSearchResults());
         }
     }
 }
