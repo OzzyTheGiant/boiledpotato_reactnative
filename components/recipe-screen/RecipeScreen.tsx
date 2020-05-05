@@ -19,7 +19,9 @@ function RecipeScreen({ navigation, recipeData, resource, fetchRecipeDetails }: 
     const recipe = recipeData as Recipe;
 
     useEffect(() => {
-        fetchRecipeDetails(recipe.id);
+        if (!recipe.servings || !recipe.ingredients || !recipe.instructions) {
+            fetchRecipeDetails(recipe.id);
+        }
     }, []);
 
     return (

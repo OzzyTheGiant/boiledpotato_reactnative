@@ -26,7 +26,7 @@ export function getRecipes(keywords: string, cuisine: string, offset: number) : 
 export function getRecipeDetails(id: number) {
     return async () => {
         const result = await httpAPI.fetchRecipeDetails(id);
-        dao.updateRecipe(result);
+        dao.updateRecipe(id, result);
         return result;
     };
 }

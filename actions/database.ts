@@ -90,28 +90,22 @@ export function fetchRecipesByQuery(id: number, limit: number, offset: number) :
     });
 }
 
-export function updateRecipe(r: Recipe) : Promise<void> {
+export function updateRecipe(id: number, r: any) : Promise<void> {
     return new Promise((resolve, reject) => {
         db.transaction(
             // SQL Query
             (tx: SQLTransaction) => {
                 tx.executeSql(
                     `UPDATE Recipes SET 
-                        name = ?, 
-                        prepMinutes = ?, 
-                        imageFileName = ?, 
                         servings = ?, 
                         ingredients = ?, 
                         instructions = ?
                     WHERE id = ?;`,
                     [
-                        r.name, 
-                        r.prepMinutes, 
-                        r.imageFileName, 
                         r.servings, 
                         r.ingredients?.join("#!") ?? null, 
                         r.instructions?.join("#!") ?? null, 
-                        r.id
+                        id
                     ]
                 );
             },
