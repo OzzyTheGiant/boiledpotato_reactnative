@@ -1,4 +1,4 @@
-import { fetchRecipes, fetchRecipeDetails } from "actions/network";
+import * as repository from "actions/repository";
 import { Recipe } from "models/Recipe";
 
 export const Types = {
@@ -40,8 +40,9 @@ export function toggleCuisine(cuisine: string) : Action {
 export function searchRecipes(keywords: string, cuisine: string, offset: number) : Action {
 	return {
         type: Types.SEARCH_RECIPES,
-        payload: fetchRecipes(keywords, cuisine, offset)
-	}
+        payload: repository.getRecipes(keywords, cuisine, offset)
+	};
+}
 
 export function clearSearchResults() : Action {
     return { type: Types.CLEAR_SEARCH_RESULTS };
@@ -57,6 +58,6 @@ export function selectRecipe(recipe: Recipe) : Action {
 export function getRecipeDetails(id: number) : Action {
 	return {
         type: Types.GET_RECIPE_DETAILS,
-        payload: fetchRecipeDetails(id)
-	}
+        payload: repository.getRecipeDetails(id)
+	};
 }
