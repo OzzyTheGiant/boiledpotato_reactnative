@@ -56,7 +56,7 @@ function mapStateToProps(state: any) {
 function mapDispatchToProps(dispatch: Function) {
 	return {
 		editKeywords: (keywords: string) => {
-			dispatch(actionCreator.editKeywords(keywords))
+			dispatch(actionCreator.editKeywords(keywords.toLowerCase().trim()))
 		},
 		toggleCuisine: (cuisine: string) => {
 			dispatch(actionCreator.toggleCuisine(cuisine))
