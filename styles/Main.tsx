@@ -105,6 +105,9 @@ const mainStyles = StyleSheet.create({
     placeholder: {
         width: "100%",
         marginBottom: Dimens.paddingViewport
+    },
+    toast: {
+        backgroundColor: Colors.accent
     }
 })
 
