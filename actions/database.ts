@@ -114,7 +114,24 @@ export function updateRecipe(id: number, r: any) : Promise<void> {
     });
 }
 
+export function toggleRecipeAsFavorite(id: number, isFavorite: boolean) : Promise<number> {
+    return new Promise((resolve, reject) => {
+        db.transaction(
+            // SQL Query
+            (tx: SQLTransaction) => {
+                tx.executeSql(
+                    "UPDATE Recipes SET isFavorite = ? WHERE id = ?",
+                    [isFavorite ? 1 : 0, id],
 
+                    (tx: SQLTransaction, result: SQLResultSet) => {
+                        resolve(result.rowsAffected);
+                    }
+                );
+            },
+            (error) => reject(error)
+        );
+    });
+}
 
 export function saveAll(q: RecipeSearchQuery, recipes: Recipe[]) : Promise<void> {
     return new Promise((resolve, reject) => {

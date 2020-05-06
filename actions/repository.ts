@@ -23,10 +23,18 @@ export function getRecipes(keywords: string, cuisine: string, offset: number) : 
     };
 }
 
-export function getRecipeDetails(id: number) {
+export function getRecipeDetails(id: number) : () => Promise<any> {
     return async () => {
         const result = await httpAPI.fetchRecipeDetails(id);
         dao.updateRecipe(id, result);
         return result;
+    };
+}
+
+export function toggleRecipeAsFavorite(id: number, isFavorite: boolean) : () => Promise<boolean> {
+    return async () => {
+        const didUpdate = await dao.toggleRecipeAsFavorite(id, isFavorite);
+        if (!didUpdate) throw new Error("Data Error: recipe could not be updated.")
+        return isFavorite;
     };
 }

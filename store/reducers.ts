@@ -65,6 +65,12 @@ function recipeListReducer(recipes: Recipe[] = [], action: Action) : Recipe[] {
         case Types.CLEAR_SEARCH_RESULTS:
             return [];
 
+        case Types.TOGGLE_RECIPE_AS_FAVORITE_SUCCESS:
+            return recipes.map(recipe => {
+                recipe.isFavorite = action.payload;
+                return recipe;
+            });
+
         default: return recipes;
     }
 }
@@ -79,6 +85,12 @@ function recipeReducer(recipe: Recipe | null = null, action: Action) : Recipe | 
                 ...recipe,
                 ...action.payload
             };
+
+        case Types.TOGGLE_RECIPE_AS_FAVORITE_SUCCESS:
+            return {
+                ...recipe,
+                isFavorite: action.payload
+            } as Recipe;
 
         default: return recipe;
     }

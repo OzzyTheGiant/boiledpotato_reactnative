@@ -13,7 +13,11 @@ export const Types = {
     GET_RECIPE_DETAILS : "GET_RECIPE_DETAILS",
     GET_RECIPE_DETAILS_LOADING: "GET_RECIPE_DETAILS_PENDING",
     GET_RECIPE_DETAILS_SUCCESS: "GET_RECIPE_DETAILS_FULFILLED",
-    GET_RECIPE_DETAILS_ERROR: "GET_RECIPE_DETAILS_REJECTED"
+    GET_RECIPE_DETAILS_ERROR: "GET_RECIPE_DETAILS_REJECTED",
+    TOGGLE_RECIPE_AS_FAVORITE: "TOGGLE_RECIPE_AS_FAVORITE",
+    TOGGLE_RECIPE_AS_FAVORITE_LOADING: "TOGGLE_RECIPE_AS_FAVORITE_PENDING",
+    TOGGLE_RECIPE_AS_FAVORITE_SUCCESS: "TOGGLE_RECIPE_AS_FAVORITE_FULFILLED",
+    TOGGLE_RECIPE_AS_FAVORITE_ERROR: "TOGGLE_RECIPE_AS_FAVORITE_REJECTED"
 }
 
 // the type definition for an Action to be dispatched to store
@@ -26,7 +30,7 @@ export interface Action {
 export function editKeywords(keywords: string) : Action {
 	return {
 		type: Types.EDIT_KEYWORDS,
-		value: keywords
+		value: keywords.toLowerCase().trim()
 	}
 }
 
@@ -60,4 +64,11 @@ export function getRecipeDetails(id: number) : Action {
         type: Types.GET_RECIPE_DETAILS,
         payload: repository.getRecipeDetails(id)
 	};
+}
+
+export function toggleRecipeAsFavorite(id: number, isFavorite: boolean) : Action {
+    return {
+        type: Types.TOGGLE_RECIPE_AS_FAVORITE,
+        payload: repository.toggleRecipeAsFavorite(id, !isFavorite)
+    }
 }
