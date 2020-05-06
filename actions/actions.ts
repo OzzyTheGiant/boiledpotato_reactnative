@@ -4,10 +4,14 @@ import { Recipe } from "models/Recipe";
 export const Types = {
 	EDIT_KEYWORDS : "EDIT_KEYWORDS",
     TOGGLE_CUISINE : "TOGGLE_CUISINE",
-	SEARCH_RECIPES  : "SEARCH_RECIPES",
+    SEARCH_RECIPES  : "SEARCH_RECIPES",
     SEARCH_RECIPES_LOADING: "SEARCH_RECIPES_PENDING",
     SEARCH_RECIPES_SUCCESS: "SEARCH_RECIPES_FULFILLED",
     SEARCH_RECIPES_ERROR: "SEARCH_RECIPES_REJECTED",
+    SEARCH_FAVORITE_RECIPES: "SEARCH_FAVORITE_RECIPES",
+    SEARCH_FAVORITE_RECIPES_LOADING: "SEARCH_FAVORITE_RECIPES_PENDING",
+    SEARCH_FAVORITE_RECIPES_SUCCESS: "SEARCH_FAVORITE_RECIPES_FULFILLED",
+    SEARCH_FAVORITE_RECIPES_ERROR: "SEARCH_FAVORITE_RECIPES_REJECTED",
     CLEAR_SEARCH_RESULTS: "CLEAR_SEARCH_RESULTS",
     SELECT_RECIPE: "SELECT_RECIPE",
     GET_RECIPE_DETAILS : "GET_RECIPE_DETAILS",
@@ -42,6 +46,13 @@ export function toggleCuisine(cuisine: string) : Action {
 }
 
 export function searchRecipes(keywords: string, cuisine: string, offset: number) : Action {
+    if (keywords === "favorites") {
+        return {
+            type: Types.SEARCH_FAVORITE_RECIPES,
+            payload: repository.getFavoriteRecipes()
+        }
+    }
+
 	return {
         type: Types.SEARCH_RECIPES,
         payload: repository.getRecipes(keywords, cuisine, offset)

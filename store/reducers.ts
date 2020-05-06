@@ -38,10 +38,12 @@ function queryReducer(query: RecipeSearchQuery = initialState.query, action: Act
 function resourceReducer(resource: Resource, action: Action) : Resource {
     switch(action.type) {
         case Types.SEARCH_RECIPES_SUCCESS:
+        case Types.SEARCH_FAVORITE_RECIPES_SUCCESS:
         case Types.GET_RECIPE_DETAILS_SUCCESS:
-            return { status: "success" };
-        
+                return { status: "success" };
+                
         case Types.SEARCH_RECIPES_ERROR:
+        case Types.SEARCH_FAVORITE_RECIPES_ERROR:
         case Types.GET_RECIPE_DETAILS_ERROR:
             return { 
                 status: "error", 
@@ -49,6 +51,7 @@ function resourceReducer(resource: Resource, action: Action) : Resource {
             };
 
         case Types.SEARCH_RECIPES_LOADING:
+        case Types.SEARCH_FAVORITE_RECIPES_LOADING:
         case Types.GET_RECIPE_DETAILS_LOADING:
             return { status: "loading" };
 
@@ -60,6 +63,7 @@ function resourceReducer(resource: Resource, action: Action) : Resource {
 function recipeListReducer(recipes: Recipe[] = [], action: Action) : Recipe[] {
     switch(action.type) {
         case Types.SEARCH_RECIPES_SUCCESS:
+        case Types.SEARCH_FAVORITE_RECIPES_SUCCESS:
             return [...recipes, ...action.payload.recipes];
 
         case Types.CLEAR_SEARCH_RESULTS:

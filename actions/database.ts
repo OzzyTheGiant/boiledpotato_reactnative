@@ -77,16 +77,32 @@ export function fetchRecipesByQuery(id: number, limit: number, offset: number) :
 
                     (tx: SQLTransaction, result: SQLResultSet) => {
                         // convert ingredient and instruciton strings to arrays before resolving
-                        resolve((result.rows as any)._array.map((recipe: any) => {
-                            recipe.ingredients = recipe.ingredients?.split("#!") ?? null;
-                            recipe.instructions = recipe.instructions?.split("#!") ?? null;
-                            return recipe;
-                        }));
+                        resolve((result.rows as any)._array.map(stringToListConverter));
                     }
                 );
             },
             (error) => reject(error)
         );
+    });
+}
+
+export function fetchFavoriteRecipes() : Promise<any> {
+    return new Promise((resolve, reject) => {
+        db.transaction(
+            (tx: SQLTransaction) => {
+                tx.executeSql(
+                    "SELECT * FROM Recipes WHERE isFavorite = 1",
+                    [],
+
+                    (tx: SQLTransaction, result: SQLResultSet) => {
+                        resolve({
+                            recipes: (result.rows as any)._array.map(stringToListConverter)
+                        });
+                    }
+                )
+            },
+            (error) => reject(error)
+        )
     });
 }
 
@@ -166,3 +182,9 @@ export function saveAll(q: RecipeSearchQuery, recipes: Recipe[]) : Promise<void>
         );
     });
 }
+
+function stringToListConverter(recipe: any) {
+    recipe.ingredients = recipe.ingredients?.split("#!") ?? null;
+    recipe.instructions = recipe.instructions?.split("#!") ?? null;
+    return recipe;
+};

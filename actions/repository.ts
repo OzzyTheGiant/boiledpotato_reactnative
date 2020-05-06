@@ -2,6 +2,7 @@
 import * as dao from "actions/database";
 import * as httpAPI from "actions/network";
 import { RecipeSearchQuery } from "models/RecipeSearchQuery";
+import { Recipe } from "models/Recipe";
 
 export function getRecipes(keywords: string, cuisine: string, offset: number) : () => Promise<any> {
     return async () => {
@@ -29,6 +30,14 @@ export function getRecipeDetails(id: number) : () => Promise<any> {
         dao.updateRecipe(id, result);
         return result;
     };
+}
+
+export function getFavoriteRecipes() : () => Promise<any> {
+    return async () => {
+        const recipes = await dao.fetchFavoriteRecipes();
+        if (!recipes.length) throw new Error("Data Error: No results found");
+        return recipes;
+    }
 }
 
 export function toggleRecipeAsFavorite(id: number, isFavorite: boolean) : () => Promise<boolean> {

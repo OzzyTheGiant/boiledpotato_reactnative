@@ -18,13 +18,20 @@ function MainScreen({ query, editKeywords, toggleCuisine, navigation } : any) {
         if (!query.keywords) {
             toast.current?.show("Please enter an ingredient!", 3000)
         } else {
-            navigation.navigate('SearchResults')
+            navigation.navigate("SearchResults")
         }
+    }
+
+    function queryForFavorites() {
+        editKeywords("favorites");
+        navigation.navigate("SearchResults");
     }
 
 	return (
 		<View style={mainStyles.screen}>
-			<Header title="Find a Recipe"/>
+            <Header 
+                title="Find a Recipe" 
+                favoriteButtonAction={queryForFavorites}/>
             <SearchBar onInput={editKeywords} onSubmit={validateField}/>
             <ScrollView bounces={false}>
                 <CuisineFilter selectedCuisine={query.cuisine.toUpperCase()} onSelect={toggleCuisine}/>
